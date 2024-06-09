@@ -1,0 +1,28 @@
+﻿@model MyProjectManagerApp.Models.Worker
+
+<h2>Додати робітника</h2>
+<form asp-action="create" asp-controller="worker">
+    <p>
+        <label asp-for="Id">Id</label><br />
+        <input type="text" asp-for="Id" />
+    </p>
+    <p>
+        <label asp-for="Name">Ім'я</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <label asp-for="Surname">Прізвище</label><br />
+        <input type="text" asp-for="Surname" />
+    </p>
+    <p>
+        <label asp-for="Position">Посада</label><br />
+        <input type="text" asp-for="Position" />
+    </p>
+    <p>
+        <label asp-for="Salary">Заробітна плата</label><br />
+        <input type="number" asp-for="Salary" />
+    </p>
+    <p>
+        <input type="submit" value="Додати" />
+    </p>
+</form>

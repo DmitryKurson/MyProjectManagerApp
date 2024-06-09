@@ -1,0 +1,28 @@
+﻿@model MyProjectManagerApp.Models.Task
+
+<h2>Додати задачу</h2>
+<form asp-action="create" asp-controller="task">
+    <p>
+        <label asp-for="Id">Id</label><br />
+        <input type="text" asp-for="Id" />
+    </p>
+    <p>
+        <label asp-for="Name">Назва</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <label asp-for="Description">Опис</label><br />
+        <input type="text" asp-for="Description" />
+    </p>
+    <p>
+        <label asp-for="WorkerName">Робітник</label><br />
+        <input type="text" asp-for="WorkerName" />
+    </p>
+    <p>
+        <label asp-for="Time">Час</label><br />
+        <input type="number" asp-for="Time" />
+    </p>
+    <p>
+        <input type="submit" value="Додати" />
+    </p>
+</form>

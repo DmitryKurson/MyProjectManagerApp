@@ -1,0 +1,28 @@
+﻿@model MyProjectManagerApp.Models.Worker
+
+<h2>Редагування даних робітника</h2>
+<form asp-action="edit" asp-controller="worker" asp-route-id="@Model.Id">
+    <p>
+        <label asp-for="Id">Id</label><br />
+        <input type="text" asp-for="Id" />
+    </p>
+    <p>
+        <label asp-for="Name">Ім'я</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <label asp-for="Surname">Прізвище</label><br />
+        <input type="text" asp-for="Surname" />
+    </p>
+    <p>
+        <label asp-for="Position">Посада</label><br />
+        <input type="text" asp-for="Position" />
+    </p>
+    <p>
+        <label asp-for="Salary">Заробітна плата</label><br />
+        <input type="number" asp-for="Salary" />
+    </p>
+    <p>
+        <input type="submit" value="Зберегти" />
+    </p>
+</form>

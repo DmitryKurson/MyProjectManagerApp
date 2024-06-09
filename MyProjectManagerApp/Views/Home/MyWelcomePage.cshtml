@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to main menu. Here you can login as administrator or enter as user</h1>
+    <p>
+        <a asp-controller="Home" asp-action="Index">Enter as user</a>
+    </p>
+    <p>
+        <a asp-area="Identity" asp-page="/Account/Login">Enter as administrator</a>
+    </p>
+</div>

@@ -1,0 +1,24 @@
+﻿@model MyProjectManagerApp.Models.Project
+
+<h2>Додати проект</h2>
+<form asp-action="create" asp-controller="project">
+    <p>
+        <label asp-for="Id">Id</label><br />
+        <input type="text" asp-for="Id" />
+    </p>
+    <p>
+        <label asp-for="Name">Назва</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <label asp-for="Description">Опис</label><br />
+        <input type="text" asp-for="Description" />
+    </p>
+    <p>
+        <label asp-for="CreatorName">Автор</label><br />
+        <input type="text" asp-for="CreatorName" />
+    </p>
+    <p>
+        <input type="submit" value="Додати" />
+    </p>
+</form>

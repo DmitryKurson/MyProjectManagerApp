@@ -1,0 +1,88 @@
+﻿@using MyProjectManagerApp.Models
+
+<style>
+    .glyphicon {
+        display: inline-block;
+        padding: 0 5px;
+    }
+
+    .glyphicon-chevron-right:after {
+        content: "\00BB";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\00AB";
+    }
+</style>
+
+<h1>Список проектів</h1>
+
+<p><a asp-action="Create">Додати проект</a></p>
+
+<form method="get">
+    <label>Назва: </label> 
+    <input name="name" value="@Model.FilterViewModel.SelectedName" />
+    <input type="submit" value="Відфільтрувати" />
+</form>
+
+<table>
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.ProjectSortViewModel.IDSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">ID</a>
+        </th>
+        <th>
+            <a asp-action="Index"
+               asp-route-sortOrder="@(Model.ProjectSortViewModel.NameSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">Назва</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.ProjectSortViewModel.DescriptionSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">Опис</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.ProjectSortViewModel.CreatorNameSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">Автор</a>
+        </th>
+        
+    </tr>
+    @foreach (var project in Model.projects)
+    {
+        <tr>
+            <td>@project.Id</td>
+            <td>@project.Name</td>
+            <td>@project.Description</td>
+            <td>@project.CreatorName</td>
+            <td>
+                <a asp-action="Edit" asp-controller="Project" asp-route-id="@project.Id">Змінити</a>
+            </td>
+            <td>
+                <form asp-controller="Project" asp-action="Delete" method="post" asp-route-id="@project.Id">
+                    <input type="submit" value="Видалити" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+           asp-route-name="@(Model.FilterViewModel.SelectedName)"
+           asp-route-sortorder="@(Model.ProjectSortViewModel.Current)"
+           class="glyphicon glyphicon-chevron-left">
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+           asp-route-name="@(Model.FilterViewModel.SelectedName)"
+           asp-route-sortorder="@(Model.ProjectSortViewModel.Current)"
+           class="glyphicon glyphicon-chevron-right">
+            Вперед
+        </a>
+    }
+</p>

@@ -1,0 +1,94 @@
+﻿@using MyProjectManagerApp.Models
+
+<style>
+    .glyphicon {
+        display: inline-block;
+        padding: 0 5px;
+    }
+
+    .glyphicon-chevron-right:after {
+        content: "\00BB";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\00AB";
+    }
+</style>
+
+<h1>Список робітників</h1>
+
+<p><a asp-action="Create">Додати робітника</a></p>
+
+<form method="get">
+    <label>Ім'я: </label>
+    <input name="name" value="@Model.FilterViewModel.SelectedName" />
+    <input type="submit" value="Відфільтрувати" />
+</form>
+
+<table>
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.WorkerSortViewModel.IDSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">ID</a>
+        </th>
+        <th>
+            <a asp-action="Index"
+               asp-route-sortOrder="@(Model.WorkerSortViewModel.NameSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">Ім'я</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.WorkerSortViewModel.SurnameSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">Прізвище</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.WorkerSortViewModel.PositionSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">Посада</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.WorkerSortViewModel.SalarySort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)">Заробітна плата</a>
+        </th>
+
+        
+    </tr>
+    @foreach (var worker in Model.workers)
+    {
+        <tr>
+            <td>@worker.Id</td>
+            <td>@worker.Name</td>
+            <td>@worker.Surname</td>
+            <td>@worker.Position</td>
+            <td>@worker.Salary</td>
+            <td>
+                <a asp-action="Edit" asp-controller="Worker" asp-route-id="@worker.Id">Змінити</a>
+            </td>
+            <td>
+                <form asp-controller="Worker" asp-action="Delete" method="post" asp-route-id="@worker.Id">
+                    <input type="submit" value="Звільнити" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+           asp-route-name="@(Model.FilterViewModel.SelectedName)"
+           asp-route-sortorder="@(Model.SortViewModel.Current)"
+           class="glyphicon glyphicon-chevron-left">
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+           asp-route-name="@(Model.FilterViewModel.SelectedName)"
+           asp-route-sortorder="@(Model.SortViewModel.Current)"
+           class="glyphicon glyphicon-chevron-right">
+            Вперед
+        </a>
+    }
+</p>
